@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FoodForAll</string>
+    <string name="title_activity_share_food_menu">ShareFoodMenu</string>
 </resources>
