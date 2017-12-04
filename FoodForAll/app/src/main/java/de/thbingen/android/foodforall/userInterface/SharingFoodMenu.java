@@ -1,61 +1,37 @@
 package de.thbingen.android.foodforall.userInterface;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.thbingen.android.foodforall.R;
+import de.thbingen.android.foodforall.userInterface.logicalRessources.Food;
+import de.thbingen.android.foodforall.userInterface.logicalRessources.FoodAdapter;
 
 public class SharingFoodMenu extends AppCompatActivity
 {
-    private Intent mainMenu;
 
+    private List<Food> foodList;
     private Button backBtn;
-    private Spinner dropDown, counterSpinner;
 
-    private ArrayAdapter<CharSequence> foodTypes, numericArray;
-
-
+    private RecyclerView recyclerView;
+    private FoodAdapter foodAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sharing_food_menu);
+        setContentView(R.layout.activity_sharing_food_add_template);
 
-        initialize();
-        setButtonListener();
-    }
-
-    private void initialize()
-    {
-        mainMenu = new Intent(this, FfaMainMenu.class);
+        foodList = new ArrayList<>();
+        foodAdapter = new FoodAdapter(foodList);
 
         backBtn = (Button) findViewById(R.id.backBtn);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        dropDown = (Spinner) findViewById(R.id.spinnerArt);
-
-        foodTypes = ArrayAdapter.createFromResource(this, R.array.food_type, R.layout.support_simple_spinner_dropdown_item);
-        foodTypes.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        dropDown.setAdapter(foodTypes);
-        numericArray = ArrayAdapter.createFromResource(this, R.array.count_portions, R.layout.support_simple_spinner_dropdown_item);
-        numericArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        counterSpinner.setAdapter(numericArray);
-    }
-
-    private void setButtonListener()
-    {
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(mainMenu);
-            }
-        });
     }
 }

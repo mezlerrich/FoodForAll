@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">FoodForAll</string>
     <string name="title_activity_share_food_menu">ShareFoodMenu</string>
+    <string name="back">Back</string>
+    <string name="gericht_einstellen">Gericht einstellen</string>
+    <string name="name">Name:</string>
+    <string name="art">Art:</string>
+    <string name="anzahl_portionen">Anzahl Portionen:</string>
+    <string name="speisekarte">Speisekarte</string>
+    <string name="nachrichten">Nachrichten</string>
+    <string name="essen_anbieten">Essen anbieten</string>
+    <string name="radar">Radar</string>
+    <string name="back1">Back</string>
 </resources>
