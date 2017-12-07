@@ -12,6 +12,8 @@ import de.thbingen.android.foodforall.R;
 public class FfaMainMenu extends AppCompatActivity implements View.OnClickListener
 {
     private Intent[] menuIntents;
+
+    private Button[] menuButtons;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -19,17 +21,35 @@ public class FfaMainMenu extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_ffa_main_menu);
 
         initialize();
+        addClickListener();
     }
 
     /**
-     * Initialize the buttons from the main menu.
+     *
      */
     private void initialize()
     {
         menuIntents = new Intent[] {
-                new Intent(this, SharingFoodAddTemplate.class)
+                new Intent(this, SharingFoodMenu.class)
         };
 
+        menuButtons = new Button[] {
+                (Button) findViewById(R.id.sharedBtn),
+                (Button) findViewById(R.id.mapBtn),
+                (Button) findViewById(R.id.carteBtn),
+                (Button) findViewById(R.id.messageBtn)
+        };
+    }
+
+    /**
+     * Set onClickListener for all Button from the main menu.
+     */
+    private void addClickListener()
+    {
+        for(Button b : menuButtons)
+        {
+            b.setOnClickListener(this);
+        }
     }
 
     @Override

@@ -1,8 +1,12 @@
 package de.thbingen.android.foodforall.userInterface;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -14,6 +18,8 @@ import de.thbingen.android.foodforall.userInterface.logicalRessources.FoodAdapte
 
 public class SharingFoodMenu extends AppCompatActivity
 {
+
+    private Intent mainMenu;
 
     private List<Food> foodList;
     private Button backBtn;
@@ -27,11 +33,41 @@ public class SharingFoodMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sharing_food_add_template);
 
+        mainMenu = new Intent(this, FfaMainMenu.class);
+
         foodList = new ArrayList<>();
         foodAdapter = new FoodAdapter(foodList);
 
-        backBtn = (Button) findViewById(R.id.backBtn);
+        //backBtn = (Button) findViewById(R.id.backBtn);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(foodAdapter);
 
+        insertIntoView();
     }
+
+    private void insertIntoView()
+    {
+        Food food = new Food("pizza", "Hauptspeise", 3);
+        foodList.add(food);
+        food = new Food("Hamburger", "Hauptspeise", 1);
+        foodList.add(food);
+        food = new Food("Eis", "Nachspeise", 1);
+        foodList.add(food);
+
+        foodAdapter.notifyDataSetChanged();
+    }
+
+   /* private void setButtonListener()
+    {
+        backBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                startActivity(mainMenu);
+            }
+        });
+    }*/
 }

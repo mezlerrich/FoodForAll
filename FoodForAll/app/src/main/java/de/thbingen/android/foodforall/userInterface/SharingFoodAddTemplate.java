@@ -12,7 +12,7 @@ import de.thbingen.android.foodforall.R;
 
 public class SharingFoodAddTemplate extends AppCompatActivity
 {
-    private Intent mainMenu;
+    private Intent sharingFoodMenu;
 
     private Button backBtn;
     private Spinner dropDown;
@@ -35,7 +35,7 @@ public class SharingFoodAddTemplate extends AppCompatActivity
 
     private void initialize()
     {
-        mainMenu = new Intent(this, FfaMainMenu.class);
+        sharingFoodMenu = new Intent(this, SharingFoodMenu.class);
 
         backBtn = (Button) findViewById(R.id.backBtn);
 
@@ -57,7 +57,7 @@ public class SharingFoodAddTemplate extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                startActivity(mainMenu);
+                startActivity(sharingFoodMenu);
             }
         });
     }
