@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -50,11 +51,8 @@ public class SharingFoodMenu extends AppCompatActivity
 
     private void insertIntoView()
     {
+        Log.w("SHFOOD","Insert items in recycling view");
         Food food = new Food("pizza", "Hauptspeise", 3);
-        foodList.add(food);
-        food = new Food("Hamburger", "Hauptspeise", 1);
-        foodList.add(food);
-        food = new Food("Eis", "Nachspeise", 1);
         foodList.add(food);
 
         foodAdapter.notifyDataSetChanged();

@@ -21,7 +21,7 @@ public class FfaMainMenu extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_ffa_main_menu);
 
         initialize();
-        addClickListener();
+        addButtonListener();
     }
 
     /**
@@ -42,9 +42,9 @@ public class FfaMainMenu extends AppCompatActivity implements View.OnClickListen
     }
 
     /**
-     * Set onClickListener for all Button from the main menu.
+     * Set onClickListener for all button from the main menu.
      */
-    private void addClickListener()
+    private void addButtonListener()
     {
         for(Button b : menuButtons)
         {

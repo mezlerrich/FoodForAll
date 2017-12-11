@@ -52,7 +52,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         Food food = foodList.get(position);
         holder.foodView.setText(food.getName());
         holder.typeView.setText(food.getType());
-        holder.quantityView.setText(food.getQuantity());
+        holder.quantityView.setText(food.getQuantity() + "");
     }
 
     @Override
