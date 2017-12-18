@@ -51,7 +51,6 @@ public class SharingFoodMenu extends AppCompatActivity
 
     private void insertIntoView()
     {
-        Log.w("SHFOOD","Insert items in recycling view");
         Food food = new Food("pizza", "Hauptspeise", 3);
         foodList.add(food);
 
