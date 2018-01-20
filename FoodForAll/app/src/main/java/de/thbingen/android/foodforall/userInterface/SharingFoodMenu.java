@@ -65,23 +65,8 @@ public class SharingFoodMenu extends AppCompatActivity implements Observer
         recyclerView.setAdapter(foodAdapter);
     }
 
-    public void insertIntoView(Food food)
-    {
-        Food test = new Food("pizza", "Hauptspeise", 3);
-        foodList.addFood(test);
-
-        foodList.addFood(food);
-
-        foodAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public void update(Observable observable, Object data)
-    {
-        foodAdapter.notifyDataSetChanged();
-    }
-
-    public void update()
     {
         foodAdapter.notifyDataSetChanged();
     }
