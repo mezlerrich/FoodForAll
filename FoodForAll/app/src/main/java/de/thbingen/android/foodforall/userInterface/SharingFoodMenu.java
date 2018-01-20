@@ -1,6 +1,7 @@
 package de.thbingen.android.foodforall.userInterface;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,18 +13,23 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import de.thbingen.android.foodforall.R;
 import de.thbingen.android.foodforall.userInterface.logicalRessources.Food;
 import de.thbingen.android.foodforall.userInterface.logicalRessources.FoodAdapter;
+import de.thbingen.android.foodforall.userInterface.observer.FoodObserver;
 
-public class SharingFoodMenu extends AppCompatActivity
+public class SharingFoodMenu extends AppCompatActivity implements Observer
 {
 
     private Intent mainMenu;
+    private Intent addFoodTemplate;
 
-    private List<Food> foodList;
+    private FoodObserver foodList;
     private Button backBtn;
+    private FloatingActionButton actionButton;
 
     private RecyclerView recyclerView;
     private FoodAdapter foodAdapter;
@@ -34,10 +40,22 @@ public class SharingFoodMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sharing_food_add_template);
 
-        mainMenu = new Intent(this, FfaMainMenu.class);
+        initialize();
 
-        foodList = new ArrayList<>();
-        foodAdapter = new FoodAdapter(foodList);
+        setButtonListener();
+    }
+
+
+    private void initialize()
+    {
+        mainMenu = new Intent(this, FfaMainMenu.class);
+        addFoodTemplate = new Intent(this, SharingFoodAddTemplate.class);
+
+        foodList = new FoodObserver();
+
+        actionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
+        foodAdapter = new FoodAdapter(foodList.getList());
 
         //backBtn = (Button) findViewById(R.id.backBtn);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -45,26 +63,36 @@ public class SharingFoodMenu extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(foodAdapter);
-
-        insertIntoView();
     }
 
-    private void insertIntoView()
+    public void insertIntoView(Food food)
     {
-        Food food = new Food("pizza", "Hauptspeise", 3);
-        foodList.add(food);
+        Food test = new Food("pizza", "Hauptspeise", 3);
+        foodList.addFood(test);
+
+        foodList.addFood(food);
 
         foodAdapter.notifyDataSetChanged();
     }
 
-   /* private void setButtonListener()
+    @Override
+    public void update(Observable observable, Object data)
     {
-        backBtn.setOnClickListener(new View.OnClickListener()
-        {
+        foodAdapter.notifyDataSetChanged();
+    }
+
+    public void update()
+    {
+        foodAdapter.notifyDataSetChanged();
+    }
+
+    private void setButtonListener()
+    {
+        actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(mainMenu);
+                startActivity(addFoodTemplate);
             }
         });
-    }*/
+    }
 }
